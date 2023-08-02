@@ -38,7 +38,7 @@ jobs:
     - name: Install Google Cloud SDK
       run: 
         curl https://sdk.cloud.google.com | bash
-        exec -l $SHELL
+        source $HOME/google-cloud-sdk/path.bash.inc
         gcloud init
 
     - name: Authenticate with Google Cloud SDK
