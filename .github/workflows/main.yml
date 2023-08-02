@@ -51,5 +51,6 @@ jobs:
 
     - name: Deploy to Kubernetes
       run: |
-        kubectl apply -f path/to/your/kubernetes/manifests/deployment.yml
-        kubectl apply -f path/to/your/kubernetes/manifests/service.yml
+        kubectl apply -f kubernetes/manifests/deployment.yml
+        kubectl apply -f kubernetes/manifests/service.yml
+      
