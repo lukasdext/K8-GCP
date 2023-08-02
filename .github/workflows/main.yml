@@ -39,6 +39,11 @@ jobs:
       run: 
         curl https://sdk.cloud.google.com | bash
 
+    - name: Install gke-gcloud-auth-plugin
+      run: |
+        sudo apt-get update
+        sudo apt-get install google-cloud-sdk-gke-gcloud-auth-plugin
+
     - name: Authenticate to Google Cloud
       id: auth
       uses: google-github-actions/auth@v0.4.0
@@ -49,7 +54,7 @@ jobs:
       run: |
         gcloud container clusters get-credentials my-cluster --zone us-central1-a --project teste-cluster-392922
 
-    - name: Deploy to Kubernetes
+    - name: Deploy to Kubernetes q n vai
       run: |
         kubectl apply -f kubernetes/manifests/deployment.yml
         kubectl apply -f kubernetes/manifests/service.yml
