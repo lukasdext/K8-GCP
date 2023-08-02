@@ -35,14 +35,23 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Set up Kubernetes CLI
-      env:
-        KUBECONFIG: ${{ secrets.GCP_KUBECONFIG }}
+    - name: Install Google Cloud SDK
+      run: 
+        curl https://sdk.cloud.google.com | bash
+        exec -l $SHELL
+        gcloud init
+
+    - name: Authenticate with Google Cloud SDK
+      run: gcloud auth login
+
+    - name: Configure Kubernetes context
       run: |
-        echo "${{ secrets.GCP_KUBECONFIG }}" > kubeconfig
-        export KUBECONFIG=kubeconfig
+        gcloud container clusters get-credentials my-cluster --zone us-central1-a --project teste-cluster-392922
+        echo "$GCP_KUBECONFIG" > $HOME/.kube/config
 
     - name: Deploy to Kubernetes
+      env:
+        KUBECONFIG: $HOME/.kube/config
       run: |
-        kubectl apply -f deployment.yml
-        kubectl apply -f service.yml
+        kubectl apply -f path/to/your/kubernetes/manifests/deployment.yml
+        kubectl apply -f path/to/your/kubernetes/manifests/service.yml
