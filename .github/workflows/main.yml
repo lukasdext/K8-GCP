@@ -50,8 +50,6 @@ jobs:
         gcloud container clusters get-credentials my-cluster --zone us-central1-a --project teste-cluster-392922
 
     - name: Deploy to Kubernetes
-      env:
-        KUBECONFIG: $HOME/.kube/config
       run: |
         kubectl apply -f path/to/your/kubernetes/manifests/deployment.yml
         kubectl apply -f path/to/your/kubernetes/manifests/service.yml
