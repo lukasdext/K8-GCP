@@ -39,9 +39,6 @@ jobs:
       run: 
         curl https://sdk.cloud.google.com | bash
 
-    - name: Install gke-gcloud-auth-plugin
-      run: sudo apt-get update && sudo apt-get --only-upgrade install google-cloud-sdk-gke-gcloud-auth-plugin
-
     - name: Authenticate to Google Cloud
       id: auth
       uses: google-github-actions/auth@v0.4.0
