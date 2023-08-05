@@ -45,11 +45,10 @@ jobs:
       with:
         credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
 
-    - name: Instalando pacotes do google
+    - name: Testando sudo
       run: |
-        sudo rm /etc/apt/sources.list.d/google-cloud-sdk.list
-        echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
         sudo apt-get update
+        
       
         
     - name: Install gke-gcloud-auth-plugin
