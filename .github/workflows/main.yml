@@ -13,7 +13,7 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Build Docker image
       run: docker build -t lukasdext01/minha-api:latest .
@@ -33,7 +33,7 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Install Google Cloud SDK
       run: 
@@ -44,13 +44,7 @@ jobs:
       uses: 'google-github-actions/auth@v1'
       with:
         credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
-
-    - name: Testando sudo
-      run: |
-        sudo apt-get update
-        
-      
-        
+          
     - name: Install gke-gcloud-auth-plugin
       run: |
         sudo apt-get update
