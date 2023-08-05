@@ -45,11 +45,15 @@ jobs:
       with:
         credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
 
+    - name: Instalando pacotes do google
+      run: |
+        curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+        echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+
     - name: Install gke-gcloud-auth-plugin
       run: |
         sudo apt-get update
-        #sudo apt-get install google-cloud-sdk-gke-gcloud-auth-plugin
-        sudo apt-get install google-cloud-sdk-kubectl-oidc
+        sudo apt-get install google-cloud-sdk-gke-gcloud-auth-plugin
 
     - name: Configure Kubernetes context
       run: |
