@@ -47,10 +47,11 @@ jobs:
 
     - name: Instalando pacotes do google
       run: |
-        sudo apt-key del B53DC80D13EDEF05
-        curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+        sudo rm /etc/apt/sources.list.d/google-cloud-sdk.list
         echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
-
+        sudo apt-get update
+      
+        
     - name: Install gke-gcloud-auth-plugin
       run: |
         sudo apt-get update
